@@ -49,8 +49,8 @@ Available commands
 To-Do
 =====
 
-* Test this with other projectors. If you have a Dell projector, please plug it in via Ethernet and try this code. Packet dumps (e.g. Wireshark) are more than welcome 
-* Test this code via Wi-Fi.
-* Add support for projectors other than Dell
-* Add serial support for Dell projectors to allow complete customization, instead of just basic controls
-* Add function to close the connection
+- [] Test this with other projectors. If you have a Dell projector, please plug it in via Ethernet and try this code. Packet dumps (e.g. Wireshark) are more than welcome 
+- [] Test this code via Wi-Fi.
+- [] Add support for projectors other than Dell
+- [] Add serial support for Dell projectors to allow complete customization, instead of just basic controls
+- [x] Add function to close the connection

@@ -83,27 +83,33 @@ DellProjector.prototype.setPort = function(sPort) {
 	port = sPort;
 }
 
-DellProjector.prototype.connect = function() {
+DellProjector.prototype.connect = function(callback) {
 	client.connect(port, ipAddress, function() {
 		this.emit('connecting', ipAddress, port);
 	}.bind(this));
+    if(typeof callback === "function") { callback(); }
 }
+
+DellProjector.prototype.disconnect = function() {
+    client.destroy().bind(this);
+    this.emit('disconnected');
+}
+
 
 /* -------------------- */
 
-DellProjector.prototype.disconnect = function() {
-	client.destroy();	
-}
+
 
 DellProjector.prototype.commands = commands;
 DellProjector.prototype.ipAddress = ipAddress;
 DellProjector.prototype.port = port;
 
-DellProjector.prototype.sendCommand = function sendCommand(command) {
+DellProjector.prototype.sendCommand = function sendCommand(command, callback) {
 	payload = []; // Clear our payload
 	payload = payload.concat(base, command); // combine our command with our base data
 	client.write(new Buffer(payload)); // And send it off as a new buffer
 	this.emit('commandsent', command, ipAddress, port); // Let the world know we've done that.
+    if(typeof callback === "function") { callback(); }
 }
 
 module.exports = DellProjector;
